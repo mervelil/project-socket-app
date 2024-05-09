@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="css/chat.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+    <style>
+       
+       body {
+    background: linear-gradient(to right, #4a47a3, #d173cc);
+}
+button {
+   
+  
+   border-radius: 20px;
+	 font-size: 15px;
+	 font-weight: bold;
+	 padding: 12px 45px;
+	 letter-spacing: 1px;
+	 text-transform: uppercase;
+	 transition: transform 80ms ease-in;
+	 color: #FFFFFF;
+	 background-color: #853f74;
+}
+
+button:active { transform: scale(0.90); }
+
+button:focus { outline: none; }
+
+
+
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="row">
+            <div class="column">
+                <div>
+                    <div class="container">
+                        <img src="images/avatar.png" alt="Avatar">
+                        <!-- //id="current-username" -->
+                        <p id="current-username" class="username"><b>Current User</b></p>
+                    </div>
+                    <button id="btn-leave">Leave</button>
+                    <form id="room-form">
+                        <input id="msg_new_room" type="text" placeholder="Enter New Room" required autocomplete="off">
+                        <button class="btn-new-room">New Room</button>
+                    </form>
+                </div>
+                <h2 style="color: #FFFFFF;">Users</h2>
+                
+                <div id="users" style=" height: 150px; overflow-y: scroll;">
+    
+                </div>
+                <h2 style="color: #FFFFFF;">Rooms</h2>
+
+                <div id="rooms" style=" height: 150px; overflow-y: scroll;">
+
+                </div>
+            </div>
+            <div class="column" style="width:60%; height:430px">
+                <h2 class="stripe" style="color: white;">Messages</h2>
+                <div style="height:100%">
+                    <emoji-picker id="emoji-table"></emoji-picker>
+                    <div id="messages" style=" height: 100%; overflow-y: scroll;">                 
+                    </div>
+                </div>
+
+
+                <div class="send-message-container">
+                    <button id="btn-emoji">Emoji</button>
+                    <input type="file" id="myFile" size="50">
+                    <button id="btn-file">File</button>
+                    <form id="chat-form">
+                        <input id="msg" type="text" placeholder="Enter Message" required autocomplete="off">
+                        <button>Send</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    // Kullanıcı adını oturum saklamasından al
+    const username = sessionStorage.getItem('username');
+    // Kullanıcı adını ekranda göster
+    document.getElementById('current-username').innerText = username;
+});
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Kullanıcı adını oturum saklamasından al
+            const username = sessionStorage.getItem('username');
+            // Kullanıcı adını ekranda göster
+            document.getElementById('current-username').innerText = username;
+        });
+    </script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js" 
+      integrity="sha512-f0AM6x08kthGzMyDHZjBgjBCPp8V8ovlHYCI1jMkhViTeX3MykGCf/DnN1khWss/6d1105eAG4TniSKy6UhZrw==" 
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+    
+</body>
+
+<!-- 
+<script src="/socket.io/socket.io.js"></script> -->
+<script src="js/client.js"></script>
+<script src="js/moment.js"></script>
+
+</html>

@@ -1,0 +1,104 @@
+.container, .user {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.container.darker, .user.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+.container::after, .user::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.container img, .user img {
+    float: left;
+    max-width: 40px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.container img.right, .user img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+.time {
+    color: #999;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+    width: 20%;
+    height: 100%; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  emoji-picker {
+	width: 400px;
+	height: 300px;
+    position: absolute;
+    z-index: 2;
+    margin-top: 8%;
+  }
+
+  input[type=text] {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    width: auto;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#app {
+    width: 90%;
+    height: 50%;
+    margin: auto;
+}
+
+p {
+    margin: 0;
+}
+
+.username {
+    margin-top: 5px;
+}
+.password {
+    margin-top: 10px;
+}
+
+#myFile { 
+    display: none;
+}

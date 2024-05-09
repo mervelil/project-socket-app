@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Chat App</title>
+    <style>
+             body {
+    background: linear-gradient(to right, #4a47a3, #d173cc);
+}
+@property --x {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0.3;
+}
+
+@property --y {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0.1;
+}
+
+body {
+	background: #efefef;
+	font: 16px system-ui;
+	color: black;
+	display: flex;
+	height: 100vh;
+	perspective: 1000px;
+}
+
+.card {
+	--degree: 19deg;
+	--x-range: 2 * (-0.5 + var(--x));
+	--y-range: 2 * (-0.5 + var(--y));
+
+	width: 350px;
+	position: relative;
+	display: grid;
+	gap: 4px;
+	margin: auto;
+	padding: 8px;
+	background: white;
+	border: 1px solid white;
+	border-radius: 16px;
+	box-shadow: calc(23px * var(--x-range)) calc(23px * var(--y-range)) 20px
+		rgba(0, 0, 0, 0.18);
+	transition: 200ms all;
+
+	animation: 3s move alternate ease-in-out infinite;
+	&:hover {
+		animation: none;
+		animation-play-state: paused;
+	}
+
+	transform: rotateX(calc(var(--degree) * var(--y-range)))
+		rotateY(calc(-1 * var(--degree) * var(--x-range)));
+
+	img {
+		max-width: 100%;
+		object-fit: cover;
+		border-radius: 8px;
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		cursor: none;
+		border-radius: inherit;
+		opacity: 0.5;
+		background-image: radial-gradient(
+			circle at calc(100% * var(--x)) calc(100% * var(--y)),
+			white,
+			transparent
+		);
+	}
+}
+
+@keyframes move {
+	from {
+		--x: 0.2;
+		--y: 0.7;
+	}
+	to {
+		--x: 0.6;
+		--y: 0.1;
+	}
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="card" id="app">
+        <img src="https://images.unsplash.com/photo-1597589827317-4c6d6e0a90bd?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=640">
+        <h1>Chat App</h1>
+        <p>
+            Join the project chat community <br>      
+        </p>
+
+        <div class="container-btn">
+            <div class="container-center-btn">
+                <button id="join-btn"
+                    onclick="document.getElementById('login-form').style.display='block'">Log in</button>
+
+            </div>
+        </div>
+        <div class="container-btn">
+          <a href="register.html"><button type="submit">Register</button> </a>
+          </div>
+
+        <div id="login-form" class="modal">
+ <!-- // action="base.html" -->
+            <form class="modal-content animate"  action="base.html">
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('login-form').style.display='none'" class="close"
+                        title="Close Modal">&times;</span>
+                    <img src="images/avatar.png" alt="Avatar" class="avatar">
+                </div>
+
+                <div class="container">
+                    <label for="username"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="username"  required autocomplete="off">
+                    <label for="password"><b>Password</b></label>
+                    <input type="text" placeholder="Enter Password" name="password" required autocomplete="off">
+                    <a href="base.html"></a> <button type="submit">Login</button>  </a>
+                  
+                </div>
+               
+
+            </form>
+        </div>
+    </div>
+<script>
+    
+    </script>
+</body>
+
+<script>
+    var modal = document.getElementById('login-form');
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+<script>
+let card = document.querySelector(".card");
+
+card.addEventListener("mousemove", (event) => {
+	let x = event.offsetX;
+	let y = event.offsetY;
+	let w = card.clientWidth;
+	let h = card.clientHeight;
+
+	card.style.setProperty("--x", x / w);
+	card.style.setProperty("--y", y / h);
+});
+
+    </script>
+
+</html>
